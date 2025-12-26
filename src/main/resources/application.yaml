@@ -7,5 +7,9 @@ usuario:
 
 agendador-tarefas:
   url: http://localhost:8080/tarefas
+
+notificacao:
+  url: http://localhost:8082/notificacao
+
 server:
   port: 8083
