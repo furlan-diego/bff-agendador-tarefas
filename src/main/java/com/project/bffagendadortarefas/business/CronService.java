@@ -31,7 +31,7 @@ public class CronService {
     @Scheduled(cron = "${cron.horario}")
     public void buscaTarefasProximaHora() {
         String token = login(converterParaRequestDto());
-        log.info("iniciado a busca de Tarefas");
+        log.info("Iniciado a busca de Tarefas");
         LocalDateTime horaAtual = LocalDateTime.now(); //LocalDateTime.now (hora atual)
         LocalDateTime horaFutura = LocalDateTime.now().plusHours(1); //+1hr
         // Qualquer tarefa que fique entre hora atual e a hora futura +1 (que sera entre 22h e 23h, por exemplo)
@@ -40,7 +40,7 @@ public class CronService {
         log.info("Tarefas encontradas: " + listaTarefas);
         listaTarefas.forEach(tarefa -> {
             emailService.enviaEmail(tarefa);
-            log.info("Email enviado para usuario" + tarefa.getEmailUsuario());
+            log.info("Email enviado para usuario: " + tarefa.getEmailUsuario());
             tarefasService.alteraStatus(StatusNotificacaoEnum.NOTIFICADO, tarefa.getId(),
                     token);
         });
